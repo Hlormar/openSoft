@@ -1,0 +1,158 @@
+// Переопределение брейкпоинтов Bootstrap
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px,
+  xxxl: 1600px // Ваш breakpoint
+);
+
+
+// Импорт Bootstrap
+@use "bootstrap/scss/bootstrap";
+
+// Ваши переменные
+$bg-dark: rgb(20, 20, 20);
+$bg-header: rgb(40, 40, 40);
+$text-gray: rgb(100, 100, 100);
+$color-purple: #5f0f40;
+$color-red: #9a031e;
+$color-yellow: #fb8b24;
+$color-orange: #e36414;
+$color-cyan: #0f4c5c;
+$color-cyan-1: #165b6e;
+$color-cyan-2: #1b6a7f;
+
+// Массив пар цветов
+$gradient-colors: (
+  (#ffb366, $color-yellow),
+  (#ff9440, $color-orange),
+  (#ff7520, #c45010),
+  (#ff5610, #a83d0a),
+  (#ff3800, #8b2d08),
+);
+
+$palette-count: length($gradient-colors);
+
+// Миксин для градиентной рамки
+@mixin gradient-border($light, $dark, $thickness: 3px) {
+  position: relative;
+  border-radius: 12px;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    border-radius: 12px;
+    padding: $thickness;
+    background: linear-gradient(120deg, $light 0%, $dark 100%);
+    -webkit-mask-image: linear-gradient(#fff 0 0), linear-gradient(#fff 0 0);
+    mask-image: linear-gradient(#fff 0 0), linear-gradient(#fff 0 0);
+    -webkit-mask-clip: content-box, border-box;
+    mask-clip: content-box, border-box;
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    z-index: 1;
+    pointer-events: none;
+  }
+}
+
+// Стили body
+body {
+  background-color: $bg-dark;
+  font-family: 'Roboto', 'Segoe UI', system-ui, sans-serif;
+}
+
+
+// Карточки с градиентной рамкой
+@for $i from 1 through 5 {
+  $idx: (($i - 1) % $palette-count) + 1;
+  $pair: nth($gradient-colors, $idx);
+  $light: nth($pair, 1);
+  $dark: nth($pair, 2);
+
+  .card-view:nth-child(5n + #{$i}) {
+    @include gradient-border($light, $dark, 4px);
+    
+    .card-title {
+      color: $light;
+    }
+  }
+}
+
+.card-view {
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-5px);
+  }
+  
+  .card-img-top {
+    height: 300px;
+    object-fit: cover;
+  }
+  
+  .card-view-textbox {
+    background-color: $bg-header;
+    color: white;
+    padding: 15px;
+    
+    .card-title {
+      color: $color-yellow;
+      text-align: center;
+    }
+    
+    .card-subtitle {
+      color: $text-gray;
+      text-align: center;
+      font-size: 14pt;
+    }
+    
+    .card-text {
+      text-align: center;
+    }
+  }
+}
+
+// Кнопка Поделиться
+#btn-share {
+  background-color: $color-cyan;
+  color: white;
+  border: none;
+  border-radius: 100px;
+  padding: 10px 24px;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    background-color: $color-cyan-1;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+  }
+  
+  &:active {
+    background-color: $color-cyan-2;
+  }
+}
+
+// Анимация для FontAwesome (расширенный уровень)
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.fa-spin-custom {
+  animation: spin 1s linear infinite;
+}
+
+.social-media-icon {
+  width: 50px;
+  height: auto;
+  margin: 10px;
+  transition: all 200ms ease;
+
+  &:hover { 
+    transform: scale(1.1); 
+  }
+}

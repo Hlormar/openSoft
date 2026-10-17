@@ -1,0 +1,233 @@
+@use "sass:list";
+@import '~bootstrap/scss/bootstrap';
+
+
+$bg-dark:        rgb(20, 20, 20);
+$bg-header:        rgb(40, 40, 40);
+$text-gray:      rgb(100, 100, 100);
+$color-purple:   #5f0f40;
+$color-red:      #9a031e;
+$color-yellow:   #fb8b24;
+$color-orange:   #e36414;
+$color-cyan:     #0f4c5c;
+$color-cyan-1:   #165b6e; //btn hover
+$color-cyan-2:   #1b6a7f; // btn active
+
+// Массив пар цветов для градиентов
+
+$gradient-colors: (
+  (#ffb366, $color-yellow), 
+  (#ff9440, $color-orange), 
+  (#ff7520, #c45010),     
+  (#ff5610, #a83d0a),  
+  (#ff3800, #8b2d08),       
+);
+
+$palette-count: list.length($gradient-colors);
+
+
+@mixin gradient-border($light, $dark, $thickness: 3px) {
+  position: relative;
+  border-radius: 12px;
+
+  // создаем градиентовый элемент сзади и вырезаем рамку
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    border-radius: 12px;
+    padding: $thickness;
+    background: linear-gradient(120deg, $light 0%, $dark 100%);
+    //cutting center
+    -webkit-mask-image: linear-gradient(#fff 0 0), linear-gradient(#fff 0 0);
+            mask-image: linear-gradient(#fff 0 0), linear-gradient(#fff 0 0);
+    -webkit-mask-clip: content-box, border-box;
+            mask-clip: content-box, border-box;
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+    z-index: 1;
+    pointer-events: none;
+  }
+}
+
+body {
+  background-color: $bg-dark;
+  font-family: Roboto, 'Segoe UI', system-ui, sans-serif;
+}
+
+#title {  
+  width: 1000px;
+  margin-inline: auto;
+  margin-top: 130px;
+  margin-bottom: 80px;
+  color: white;
+  font-size: 32pt;
+}
+
+.grid-container {
+  width: 1000px;
+  margin-inline: auto;
+  margin-bottom: 220px;
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  justify-content: center;
+  gap: 50px;
+}
+
+//card view loop
+@for $i from 1 through 50 {
+  $idx: (($i - 1) % $palette-count) + 1;
+  $pair: list.nth($gradient-colors, $idx);
+  $light: list.nth($pair, 1);
+  $dark:  list.nth($pair, 2);
+
+  .card-view:nth-child(#{$i}) {
+    @include gradient-border($light, $dark, 4px);
+    
+    .card-view-textbox h3 { 
+      color: $light; 
+    }
+  }
+}
+
+.card-view {
+  width: 300px;
+  height: 350px;
+  //background-color: $bg-card;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+}
+
+.card-view-textbox {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 150px;
+  width: inherit;
+  background-color: $bg-header;
+  color: white;
+  padding-inline: 8px;
+  padding-block: 10px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 100ms ease-in-out;
+  z-index: 1000;
+
+  h3 {
+    color: $color-yellow;
+    text-align: center;
+    margin-block: 5px;
+  }
+  h4 {
+    color: $text-gray;
+    text-align: center;
+    font-size: 14pt;
+    margin-block: 5px;
+  }
+  p { 
+    text-align: center; 
+  }
+}
+
+.card-view:hover .card-view-textbox {
+  opacity: 1;
+  visibility: visible;
+}
+
+
+.header-container {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  z-index: 1000;
+  padding-top: 10px;
+  padding-bottom: 5px;
+  background-color: $bg-header;
+}
+
+.header {
+  height: auto;
+  width: 1000px;
+  margin-inline: auto;
+  padding-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  color: white;
+  h1 { 
+    margin-left: 20px; 
+  }
+}
+
+#logo {
+  width: 300px;
+  height: auto;
+}
+
+//дизайн кнопки с сайта MaterialDesign
+#btn-share {
+  margin-left: auto;
+  background-color: $color-cyan;
+  color: white;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.1px;
+  border-radius: 100px;
+  padding-inline: 24px;
+  padding-block: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    all 200ms cubic-bezier(0.2, 0, 0, 1);
+
+  &:hover {
+    background-color: $color-cyan-1;
+    box-shadow:
+      0px 1px 3px 1px rgba(0, 0, 0, 0.15),
+      0px 1px 2px 0px rgba(0, 0, 0, 0.3);
+  }
+  &:active { background-color: $color-cyan-2; }
+}
+
+.footer {
+  width: 1000px;
+  margin-inline: auto;
+  padding-top: 25px;
+  padding-bottom: 70px;
+  border-top: 2px solid $bg-header;
+  display: flex;
+  flex-direction: row;
+  color: white;
+
+  p { 
+    margin-right: auto; 
+  }
+}
+
+.social-media-icon {
+  width: 50px;
+  height: auto;
+  margin: 10px;
+  transition: all 200ms ease;
+
+  &:hover { 
+    transform: scale(1.1); 
+  }
+}
