@@ -1,4 +1,4 @@
-// Переопределение брейкпоинтов Bootstrap
+
 $grid-breakpoints: (
   xs: 0,
   sm: 576px,
@@ -6,7 +6,7 @@ $grid-breakpoints: (
   lg: 992px,
   xl: 1200px,
   xxl: 1400px,
-  xxxl: 1600px // Ваш breakpoint
+  xxxl: 1600px
 );
 
 
@@ -117,7 +117,6 @@ body {
   }
 }
 
-// Кнопка Поделиться
 #btn-share {
   background-color: $color-cyan;
   color: white;
@@ -136,7 +135,7 @@ body {
   }
 }
 
-// Анимация для FontAwesome (расширенный уровень)
+
 @keyframes spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }

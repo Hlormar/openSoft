@@ -3,16 +3,14 @@
     <head>
         <title>игры вархаммер40к</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- FontAwesome для иконок (расширенный уровень) -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     </head>
 
     <body>
-    <!-- Nav (Шапка) -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
             <a class="navbar-brand" href="#">
-                <img src="res/40k_Logo_Colour_1.webp" alt="Warhammer" height="40">
+                <img class="img-fluid" src="res/40k_Logo_Colour_1.webp" alt="Warhammer" height="40">
                 Warhammer 40,000
             </a>
 
@@ -28,19 +26,17 @@
         </div>
     </nav>
 
-
-    <!-- Основной контент -->
     <div class="container mt-5 pt-5">
         <h1 class="text-center text-white mb-4">Империя человечества</h1>
-        
-        <!-- Grid с карточками -->
+
+
         <div class="row g-4 justify-content-center" id="cards-container">
-            <!-- Карточки будут генерироваться через JS или вручную -->
-            
+
+
             <!-- Карточка 1 -->
             <div class="col-12 col-sm-6 col-md-4 col-lg-4">
                 <div class="card card-view h-100" data-bs-toggle="modal" data-bs-target="#modal-1">
-                    <img src="res/adeptus/40K_LP_-_Imperium_-_Adeptus_Mechanicus.webp" class="card-img-top" alt="Adeptus Mechanicus">
+                    <img src="res/adeptus/40K_LP_-_Imperium_-_Adeptus_Mechanicus.webp" class="card-img-top img-fluid" alt="Adeptus Mechanicus">
                     <div class="card-body card-view-textbox">
                         <h3 class="card-title">Adeptus Mechanicus</h3>
                         <h4 class="card-subtitle mb-2">Fraction</h4>
@@ -52,7 +48,7 @@
             <!-- Карточка 2 -->
             <div class="col-12 col-sm-6 col-md-4 col-lg-4">
                 <div class="card card-view h-100" data-bs-toggle="modal" data-bs-target="#modal-2">
-                    <img src="res/adeptus/HP-241008-824x1256-ImperialAgentsCodex.webp" class="card-img-top" alt="Imperial Agents">
+                    <img src="res/adeptus/HP-241008-824x1256-ImperialAgentsCodex.webp" class="card-img-top img-fluid" alt="Imperial Agents">
                     <div class="card-body card-view-textbox">
                         <h3 class="card-title">Imperial Agents</h3>
                         <h4 class="card-subtitle mb-2">Fraction</h4>
@@ -64,7 +60,7 @@
             <!-- Карточка 3 -->
             <div class="col-12 col-sm-6 col-md-4 col-lg-4">
                 <div class="card card-view h-100" data-bs-toggle="modal" data-bs-target="#modal-3">
-                    <img src="res/adeptus/LP-240413-CODEXCARD-Custodes__1_.webp"  class="card-img-top" alt="Adeptus Custodes">
+                    <img src="res/adeptus/LP-240413-CODEXCARD-Custodes__1_.webp"  class="card-img-top img-fluid" alt="Adeptus Custodes">
                     <div class="card-body card-view-textbox">
                         <h3 class="card-title">Adeptus Custodes</h3>
                         <h4 class="card-subtitle mb-2">Fraction</h4>
@@ -76,7 +72,7 @@
             <!-- Карточка 4 -->
             <div class="col-12 col-sm-6 col-md-4 col-lg-4">
                 <div class="card card-view h-100" data-bs-toggle="modal" data-bs-target="#modal-4">
-                    <img src="res/adeptus/LP40K-240608-Square-Sororitas.webp" class="card-img-top" alt="Imperial Agents">
+                    <img src="res/adeptus/LP40K-240608-Square-Sororitas.webp" class="card-img-top img-fluid" alt="Imperial Agents">
                     <div class="card-body card-view-textbox">
                         <h3 class="card-title">Imperial Agents</h3>
                         <h4 class="card-subtitle mb-2">Fraction</h4>
@@ -88,7 +84,7 @@
 
             <div class="col-12 col-sm-6 col-md-4 col-lg-4">
                 <div class="card card-view h-100" data-bs-toggle="modal" data-bs-target="#modal-5">
-                    <img src="res/adeptus/LP40K-TOUT-060925-ImperialKnightsCodex.webp" class="card-img-top" alt="Imperial Agents">
+                    <img src="res/adeptus/LP40K-TOUT-060925-ImperialKnightsCodex.webp" class="card-img-top img-fluid" alt="Imperial Agents">
                     <div class="card-body card-view-textbox">
                         <h3 class="card-title">Imperial Agents</h3>
                         <h4 class="card-subtitle mb-2">Fraction</h4>
@@ -98,8 +94,8 @@
             </div>
         </div>
     </div>
-<!-- Модальные окна (по одному на каждый объект) -->
-    
+
+
     <!-- Modal 1 -->
     <div class="modal fade" id="modal-1" tabindex="-1" aria-labelledby="modalLabel1" >
         <div class="modal-dialog modal-lg">
@@ -111,7 +107,7 @@
                 <div class="modal-body">
                     <img src="res/adeptus/40K_LP_-_Imperium_-_Adeptus_Mechanicus.webp" class="img-fluid mb-3" alt="Adeptus Mechanicus">
                     <p>
-                        <span data-bs-toggle="popover" data-bs-trigger="hover" data-bs-content="Организация техножрецов Марса">Adeptus Mechanicus</span> 
+                        <span data-bs-toggle="popover" data-bs-trigger="hover" data-bs-content="Организация техножрецов Марса">Adeptus Mechanicus</span>
                         — это технологическая фракция Империума. Они хранят знания о древних технологиях и создают оружие для армии.
                     </p>
                     <button type="button" class="btn btn-primary" onclick="showToast()">
@@ -133,7 +129,7 @@
                 <div class="modal-body">
                     <img src="res/adeptus/HP-241008-824x1256-ImperialAgentsCodex.webp" class="img-fluid mb-3" alt="Imperial Agents">
                     <p>
-                        <span data-bs-toggle="popover" data-bs-trigger="hover" data-bs-content="Тайные агенты Империума">Imperial Agents</span> 
+                        <span data-bs-toggle="popover" data-bs-trigger="hover" data-bs-content="Тайные агенты Империума">Imperial Agents</span>
                         — элитные оперативники, выполняющие секретные миссии по всему галактическому пространству.
                     </p>
                     <button type="button" class="btn btn-primary" onclick="showToast()">
@@ -155,7 +151,7 @@
                 <div class="modal-body">
                     <img src="res/adeptus/LP-240413-CODEXCARD-Custodes__1_.webp" class="img-fluid mb-3" alt="Adeptus Custodes">
                     <p>
-                        <span data-bs-toggle="popover" data-bs-trigger="hover" data-bs-content="Личная гвардия Императора">Adeptus Custodes</span> 
+                        <span data-bs-toggle="popover" data-bs-trigger="hover" data-bs-content="Личная гвардия Императора">Adeptus Custodes</span>
                         — элитные воины, защищающие Императора человечества на Золотом Троне.
                     </p>
                     <button type="button" class="btn btn-primary" onclick="showToast()">
@@ -177,7 +173,7 @@
                 <div class="modal-body">
                     <img src="res/adeptus/LP40K-240608-Square-Sororitas.webp" class="img-fluid mb-3" alt="Adeptus Mechanicus">
                     <p>
-                        <span data-bs-toggle="popover" data-bs-trigger="hover" data-bs-content="Организация техножрецов Марса">Adeptus Mechanicus</span> 
+                        <span data-bs-toggle="popover" data-bs-trigger="hover" data-bs-content="Организация техножрецов Марса">Adeptus Mechanicus</span>
                         — это технологическая фракция Империума. Они хранят знания о древних технологиях и создают оружие для армии.
                     </p>
                     <button type="button" class="btn btn-primary" onclick="showToast()">
@@ -199,7 +195,7 @@
                 <div class="modal-body">
                     <img src="res/adeptus/LP40K-TOUT-060925-ImperialKnightsCodex.webp" class="img-fluid mb-3" alt="Adeptus Mechanicus">
                     <p>
-                        <span data-bs-toggle="popover" data-bs-trigger="hover" data-bs-content="Организация техножрецов Марса">Adeptus Mechanicus</span> 
+                        <span data-bs-toggle="popover" data-bs-trigger="hover" data-bs-content="Организация техножрецов Марса">Adeptus Mechanicus</span>
                         — это технологическая фракция Империума. Они хранят знания о древних технологиях и создают оружие для армии.
                     </p>
                     <button type="button" class="btn btn-primary" onclick="showToast()">
@@ -210,7 +206,7 @@
         </div>
     </div>
 
-    <!-- Toast контейнер -->
+
     <div class="toast-container position-fixed bottom-0 end-0 p-3">
         <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="toast-header">
@@ -220,17 +216,17 @@
                 <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
             </div>
             <div class="toast-body">
-                На текущий момент этот функционал недоступен.
+                этот функционал недоступен.
             </div>
         </div>
     </div>
 
     <!-- Footer -->
-    <footer class="bg-dark text-white text-center py-3 mt-5">
+    <footer class="bg-dark bd-footer text-white text-center py-3 mt-5 ">
         <p>Ермолаев Константин Дмитриевич</p>
         <div>
-            <img class="social-media-icon" src="res/telegram-icon-free-png-3410861026.png" alt="tg">
-            <img class="social-media-icon" src="res/youtube-icon-for-web-design-free-png-1319777305.png" alt="yt">
+            <img class="social-media-icon img-fluid" src="res/telegram-icon-free-png-3410861026.png" alt="tg">
+            <img class="social-media-icon img-fluid" src="res/youtube-icon-for-web-design-free-png-1319777305.png" alt="yt">
         </div>
     </footer>
     </body>
