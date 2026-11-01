@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     </head>
 
-    <body>
+    <body class="d-flex flex-column min-vh-100">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
             <a class="navbar-brand" href="#">
@@ -26,15 +26,15 @@
         </div>
     </nav>
 
-    <div class="container mt-5 pt-5">
+    <div class="container mt-5 pt-5 mb-5">
         <h1 class="text-center text-white mb-4">Империя человечества</h1>
 
 
-        <div class="row g-4 justify-content-center" id="cards-container">
+        <div class="row  row-cols-md-3 row-cols-lg-4 row-cols-xxl-5 g-4 justify-content-center" id="cards-container">
 
 
             <!-- Карточка 1 -->
-            <div class="col-12 col-sm-6 col-md-4 col-lg-4">
+            <div class="col">
                 <div class="card card-view h-100" data-bs-toggle="modal" data-bs-target="#modal-1">
                     <img src="res/adeptus/40K_LP_-_Imperium_-_Adeptus_Mechanicus.webp" class="card-img-top img-fluid" alt="Adeptus Mechanicus">
                     <div class="card-body card-view-textbox">
@@ -46,7 +46,7 @@
             </div>
 
             <!-- Карточка 2 -->
-            <div class="col-12 col-sm-6 col-md-4 col-lg-4">
+            <div class="col">
                 <div class="card card-view h-100" data-bs-toggle="modal" data-bs-target="#modal-2">
                     <img src="res/adeptus/HP-241008-824x1256-ImperialAgentsCodex.webp" class="card-img-top img-fluid" alt="Imperial Agents">
                     <div class="card-body card-view-textbox">
@@ -58,7 +58,7 @@
             </div>
 
             <!-- Карточка 3 -->
-            <div class="col-12 col-sm-6 col-md-4 col-lg-4">
+            <div class="col">
                 <div class="card card-view h-100" data-bs-toggle="modal" data-bs-target="#modal-3">
                     <img src="res/adeptus/LP-240413-CODEXCARD-Custodes__1_.webp"  class="card-img-top img-fluid" alt="Adeptus Custodes">
                     <div class="card-body card-view-textbox">
@@ -70,7 +70,7 @@
             </div>
 
             <!-- Карточка 4 -->
-            <div class="col-12 col-sm-6 col-md-4 col-lg-4">
+            <div class="col">
                 <div class="card card-view h-100" data-bs-toggle="modal" data-bs-target="#modal-4">
                     <img src="res/adeptus/LP40K-240608-Square-Sororitas.webp" class="card-img-top img-fluid" alt="Imperial Agents">
                     <div class="card-body card-view-textbox">
@@ -82,7 +82,7 @@
             </div>
 
 
-            <div class="col-12 col-sm-6 col-md-4 col-lg-4">
+            <div class="col">
                 <div class="card card-view h-100" data-bs-toggle="modal" data-bs-target="#modal-5">
                     <img src="res/adeptus/LP40K-TOUT-060925-ImperialKnightsCodex.webp" class="card-img-top img-fluid" alt="Imperial Agents">
                     <div class="card-body card-view-textbox">
@@ -222,7 +222,7 @@
     </div>
 
     <!-- Footer -->
-    <footer class="bg-dark bd-footer text-white text-center pt-3 mt-5 ">
+    <footer class="bg-dark bd-footer text-white text-center pt-3 mt-auto ">
         <p>Ермолаев Константин Дмитриевич</p>
         <div>
             <img class="social-media-icon img-fluid" src="res/telegram-icon-free-png-3410861026.png" alt="tg">
