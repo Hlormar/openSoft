@@ -23,7 +23,8 @@ class FractionController extends Controller
     // Отображение формы создания
     public function create()
     {
-        return view('fractions.create');
+        $websiteDate = WebsiteDate::first();
+        return view('fractions.create', compact('websiteDate'));
     }
 
     // Сохранение новой фракции

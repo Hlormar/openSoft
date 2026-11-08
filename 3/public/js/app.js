@@ -17193,22 +17193,19 @@ window.$ = window.jQuery = jquery__WEBPACK_IMPORTED_MODULE_0__["default"];
 
 //import '../scss/styles.scss';
 
-
-// Функция Поделиться
-function share() {
-  window.alert(document.URL);
-}
 document.addEventListener('DOMContentLoaded', function () {
-  // Находим кнопку
-  var shareBtn = document.getElementById('btn-share');
 
+  /*// Находим кнопку
+  const createBtn = document.getElementById('btn-create');
+  
   // Вешаем событие
-  if (shareBtn) {
-    shareBtn.addEventListener('click', function () {
-      console.log('Кнопка нажата!');
-      share();
-    });
-  }
+  if (createBtn) {
+      createBtn.addEventListener('click', function() {
+  
+          console.log('Кнопка нажата!');
+          share();
+      });
+  }*/
 });
 })();
 

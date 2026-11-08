@@ -6,6 +6,7 @@
 
     <title>@yield('title', 'Warhammer 40,000')</title>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="{{ mix('css/style.css') }}">
 </head>
 
@@ -20,9 +21,9 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <button id="btn-share" type="button" class="btn btn-outline-info">
-                            <i class="fas fa-share-alt"></i>  Поделиться
-                        </button>
+                        <a id="btn-create" href="{{ route('fractions.create') }}" class="btn btn-outline-info">
+                            <i class="fas fa-share-alt"></i>  Добавить
+                        </a>
                     </li>
                 </ul>
             </div>
