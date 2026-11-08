@@ -44,7 +44,13 @@ class FractionController extends Controller
     // Отображение отдельной фракции
     public function show(Fraction $fraction)
     {
-        return view('fractions.show', compact('fraction'));
+        return response()->json([
+            'id' => $fraction->id,
+            'name' => $fraction->name,
+            'subtitle' => $fraction->subtitle,
+            'description' => $fraction->description,
+            'image' => asset('storage/laravel/' . $fraction->image_path),
+        ]);
     }
 
     // Отображение формы редактирования

@@ -13127,3 +13127,7 @@ body {
 .social-media-icon:hover {
   transform: scale(1.1);
 }
+
+main {
+  flex: 1;
+}
