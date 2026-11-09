@@ -29,15 +29,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Текущий индекс выбранной карточки
     let currentCardIndex = -1;
 
-    // Защита от ситуации, когда несколько AJAX-запросов
-    // завершаются не в том порядке, в котором были отправлены
     let requestId = 0;
 
-
-    // ==========================================
-    // Загрузка данных фракции
-    // ==========================================
-
+    //загрузить карточку по index
     async function loadFraction(index) {
 
         const card = cards[index];
@@ -57,14 +51,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const fraction = await response.json();
 
-            // Если за время запроса пользователь выбрал другую карточку,
-            // не применяем устаревший ответ
             if (currentRequest !== requestId) return;
 
 
             // Заголовок
             document.getElementById('modalLabel').textContent =
                 fraction.name;
+
+            // кнопка редактирование 
+            const editButton = document.getElementById('editFractionBtn');
+            editButton.href = `/fractions/${fraction.id}/edit`;
+            // Настраиваем форму удаления
+            const deleteForm = document.getElementById('deleteFractionForm');
+            const deleteUrlTemplate = deleteForm.dataset.urlTemplate;
+
+            deleteForm.action = deleteUrlTemplate.replace('__ID__', fraction.id);
 
 
             // Изображение
@@ -109,10 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-    // ==========================================
-    // Первоначальное открытие Modal
-    // ==========================================
-
+    // открывание Модала
     modal.addEventListener('show.bs.modal', (event) => {
 
         const card = event.relatedTarget;
@@ -162,5 +160,18 @@ document.addEventListener('DOMContentLoaded', () => {
             loadFraction(prevIndex);
         }
     });
+
+    // форма подтверждения удаления при нажатии кнопки
+    const deleteForm = document.getElementById('deleteFractionForm');
+
+    if (deleteForm) {
+        deleteForm.addEventListener('submit', function (event) {
+            const confirmed = confirm('Вы действительно хотите удалить эту фракцию?');
+
+            if (!confirmed) {
+                event.preventDefault();
+            }
+        });
+    }
 
 });

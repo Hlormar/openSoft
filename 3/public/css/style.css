@@ -13131,3 +13131,7 @@ body {
 main {
   flex: 1;
 }
+
+#deleteFractionForm {
+  display: inline;
+}

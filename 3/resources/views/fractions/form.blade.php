@@ -5,8 +5,8 @@
 
 @section('content')
 
-<div class="container py-4">
-    <h1>
+<div class="container py-4 text-light">
+    <h1 class="text-light mb-4">
         {{ isset($fraction) ? 'Редактирование фракции' : 'Добавление фракции' }}
     </h1>
 
@@ -25,11 +25,13 @@
 
         {{-- Название --}}
         <div class="mb-3">
-            <label for="name" class="form-label">Название</label>
+            <label for="name" class="form-label text-light">
+                Название
+            </label>
 
             <input
                 type="text"
-                class="form-control @error('name') is-invalid @enderror"
+                class="form-control form-control-dark @error('name') is-invalid @enderror"
                 id="name"
                 name="name"
                 value="{{ old('name', $fraction->name ?? '') }}"
@@ -44,11 +46,13 @@
 
         {{-- Подзаголовок --}}
         <div class="mb-3">
-            <label for="subtitle" class="form-label">Подзаголовок</label>
+            <label for="subtitle" class="form-label text-light">
+                Подзаголовок
+            </label>
 
             <input
                 type="text"
-                class="form-control @error('subtitle') is-invalid @enderror"
+                class="form-control form-control-dark @error('subtitle') is-invalid @enderror"
                 id="subtitle"
                 name="subtitle"
                 value="{{ old('subtitle', $fraction->subtitle ?? '') }}"
@@ -62,10 +66,12 @@
 
         {{-- Описание --}}
         <div class="mb-3">
-            <label for="description" class="form-label">Описание</label>
+            <label for="description" class="form-label text-light">
+                Описание
+            </label>
 
             <textarea
-                class="form-control @error('description') is-invalid @enderror"
+                class="form-control form-control-dark @error('description') is-invalid @enderror"
                 id="description"
                 name="description"
                 rows="6"
@@ -79,11 +85,13 @@
 
         {{-- Изображение --}}
         <div class="mb-3">
-            <label for="image" class="form-label">Изображение</label>
+            <label for="image" class="form-label text-light">
+                Изображение
+            </label>
 
             <input
                 type="file"
-                class="form-control @error('image') is-invalid @enderror"
+                class="form-control form-control-dark @error('image') is-invalid @enderror"
                 id="image"
                 name="image"
                 accept="image/jpeg,image/png,image/webp"
@@ -94,12 +102,13 @@
             @enderror
 
             @if (isset($fraction) && $fraction->image_path)
-                <div class="mt-2">
-                    <p>Текущее изображение:</p>
+                <div class="mt-3">
+                    <p class="text-light mb-2">Текущее изображение:</p>
+
                     <img
                         src="{{ asset('storage/laravel/' . $fraction->image_path) }}"
                         alt="{{ $fraction->name }}"
-                        style="max-width: 200px;"
+                        class="current-fraction-image"
                     >
                 </div>
             @endif

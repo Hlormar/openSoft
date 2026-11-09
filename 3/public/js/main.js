@@ -7479,22 +7479,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Текущий индекс выбранной карточки
   var currentCardIndex = -1;
-
-  // Защита от ситуации, когда несколько AJAX-запросов
-  // завершаются не в том порядке, в котором были отправлены
   var requestId = 0;
 
-  // ==========================================
-  // Загрузка данных фракции
-  // ==========================================
+  //загрузить карточку по index
   function loadFraction(_x) {
     return _loadFraction.apply(this, arguments);
-  } // ==========================================
-  // Первоначальное открытие Modal
-  // ==========================================
+  } // открывание Модала
   function _loadFraction() {
     _loadFraction = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee(index) {
-      var card, currentRequest, _bootstrap$Popover$ge, _fraction$subtitle, response, fraction, image, popover, _t;
+      var card, currentRequest, _bootstrap$Popover$ge, _fraction$subtitle, response, fraction, editButton, _deleteForm, deleteUrlTemplate, image, popover, _t;
       return _regenerator().w(function (_context) {
         while (1) switch (_context.p = _context.n) {
           case 0:
@@ -7530,6 +7523,14 @@ document.addEventListener('DOMContentLoaded', function () {
           case 6:
             // Заголовок
             document.getElementById('modalLabel').textContent = fraction.name;
+
+            // кнопка редактирование 
+            editButton = document.getElementById('editFractionBtn');
+            editButton.href = "/fractions/".concat(fraction.id, "/edit");
+            // Настраиваем форму удаления
+            _deleteForm = document.getElementById('deleteFractionForm');
+            deleteUrlTemplate = _deleteForm.dataset.urlTemplate;
+            _deleteForm.action = deleteUrlTemplate.replace('__ID__', fraction.id);
 
             // Изображение
             image = document.getElementById('modalImg');
@@ -7604,6 +7605,17 @@ document.addEventListener('DOMContentLoaded', function () {
       loadFraction(prevIndex);
     }
   });
+
+  // форма подтверждения удаления при нажатии кнопки
+  var deleteForm = document.getElementById('deleteFractionForm');
+  if (deleteForm) {
+    deleteForm.addEventListener('submit', function (event) {
+      var confirmed = confirm('Вы действительно хотите удалить эту фракцию?');
+      if (!confirmed) {
+        event.preventDefault();
+      }
+    });
+  }
 });
 
 /***/ }

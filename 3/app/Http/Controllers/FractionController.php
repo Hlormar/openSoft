@@ -3,8 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Fraction;
-use Illuminate\Http\Request;
 use App\Models\WebsiteDate;
+
+// запрос для валидации
+use App\Http\Requests\FractionRequest;
+
+//для сохр картинок в хранилище
+use Illuminate\Support\Facades\Storage;
+
+// для изм размера картинок
+use Intervention\Image\Laravel\Facades\Image;
+use Illuminate\Support\Str;
+use Illuminate\Http\UploadedFile;
+use Intervention\Image\Format;
 
 class FractionController extends Controller
 {
@@ -20,22 +31,51 @@ class FractionController extends Controller
         ));
     }
 
+    //приватная функция сжатия и сохранения картинки, возвращает относительный путь
+    private function saveImage(UploadedFile $file): string
+    {
+        //сжатие до максимального размера, сохраяняя пропорцию
+        $image = Image::decode($file)
+            ->scaleDown(
+                width: 1920,
+                height: 1080
+            );
+
+        $encodedImage = $image->encodeUsingFormat(
+            Format::WEBP,
+            quality: 90
+        );
+
+        $filename = Str::uuid() . '.webp';
+
+        Storage::disk('public')->put(
+            'laravel/res/adeptus/' . $filename,
+            (string) $encodedImage
+        );
+
+        return 'res/adeptus/' . $filename;
+    }
+
     // Отображение формы создания
     public function create()
     {
         $websiteDate = WebsiteDate::first();
-        return view('fractions.create', compact('websiteDate'));
+        return view('fractions.form', compact('websiteDate'));
     }
 
     // Сохранение новой фракции
-    public function store(Request $request)
+    public function store(FractionRequest $request)
     {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'subtitle' => 'nullable|string|max:255',
-            'description' => 'required|string',
-            'image_path' => 'nullable|string|max:2048',
-        ]);
+        $validated = $request->validated();
+
+
+        if ($request->hasFile('image')) {
+            $validated['image_path'] = $this->saveImage(
+                $request->file('image')
+            );
+        }
+
+        unset($validated['image']);
 
         Fraction::create($validated);
 
@@ -57,18 +97,37 @@ class FractionController extends Controller
     // Отображение формы редактирования
     public function edit(Fraction $fraction)
     {
-        return view('fractions.edit', compact('fraction'));
+        $websiteDate = WebsiteDate::first();
+
+        return view('fractions.form', compact(
+            'fraction',
+            'websiteDate'
+        ));
     }
 
     // Обновление существующей фракции
-    public function update(Request $request, Fraction $fraction)
+    public function update(FractionRequest $request, Fraction $fraction)
     {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'subtitle' => 'nullable|string|max:255',
-            'description' => 'required|string',
-            'image_path' => 'nullable|string|max:2048',
-        ]);
+        $validated = $request->validated();
+
+        if ($request->hasFile('image')) {
+
+            // Сохраняем новое изображение.
+            $newImagePath = $this->saveImage(
+                $request->file('image')
+            );
+
+            // Удаляем старое изображение.
+            if ($fraction->image_path) {
+                Storage::disk('public')->delete(
+                    'laravel/' . $fraction->image_path
+                );
+            }
+
+            $validated['image_path'] = $newImagePath;
+        }
+
+        unset($validated['image']);
 
         $fraction->update($validated);
 

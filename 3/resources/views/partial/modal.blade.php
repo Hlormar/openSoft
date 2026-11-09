@@ -31,6 +31,24 @@
                     <i class="fas fa-download"></i> Загрузить
                 </button>
 
+                <a href="#" id="editFractionBtn" class="btn btn-warning">
+                    Редактировать
+                </a>
+
+                <form
+                    id="deleteFractionForm"
+                    method="POST"
+                    action="#"
+                    data-url-template="{{ route('fractions.destroy', ['fraction' => '__ID__']) }}"
+                >
+                    @csrf
+                    @method('DELETE')
+
+                    <button id="deleteFractionBtn" type="submit" class="btn btn-danger">
+                        Удалить
+                    </button>
+                </form>
+
             </div>
         </div>
     </div>
